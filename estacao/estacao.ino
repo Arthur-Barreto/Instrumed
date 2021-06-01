@@ -26,11 +26,13 @@ void loop()
 {
 // para o ldr
 b = analogRead(A1); // lê o binario do sensor de luminosidade
+delay(10);
 t = (b/1023.0)*5.0; // converte em tensão 
-res = t*10000.0/(5.0-t); // calcula resistencia
+res = t*100000.0/(5.0-t); // calcula resistencia
 lum = pow(10,6.5-1.25*log10(res)); // calcula a luminosidade
 // para o lm35
 bin = analogRead(A0); // Lê valor binário
+delay(10);
 tensao = (bin/1023.0)*5.0; // Converte em tensão
 temp = 99.602*tensao-0.0677; // Converte em temp.e calibra
 /////////Para o dht22///////////////
@@ -61,7 +63,7 @@ lcd.print(lum);
 delay(2000);
 lcd.clear();
 lcd.setCursor(0,0);
-lcd.print("Pressão [hPa]:");
+lcd.print("Presure [hPa]:");
 lcd.setCursor(0,1);
 lcd.print(press/100);
 delay(2000);
