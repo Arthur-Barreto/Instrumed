@@ -14,13 +14,37 @@ int b;float t,res,lum; // variáveis do ldr
 float press; // variável da pressão d sensor bmp 280
 // chama o lcd na biblioteca
 LiquidCrystal_I2C lcd(0x27,16,2);
+// criar o caracter especial para a com acento tio e o grau
+  byte grau[] = {
+    B00111,
+    B00101,
+    B00111,
+    B00000,
+    B00000,
+    B00000,
+    B00000,
+    B00000
+    };
+  byte tio[] = {
+    B00101,
+    B01010,
+    B01110,
+    B00001,
+    B01111,
+    B10001,
+    B01111,
+    B00000
+    };
 void setup()
 {
-Serial.begin(9600);// Inicializa serial
-bmp.begin(0x76); // Inicializa objeto BMP
-dht.begin(); // Inicializa objeto dht
-lcd.init(); // Inicializa LCD
-lcd.backlight(); // Liga luz do LCD
+  Serial.begin(9600);// Inicializa serial
+  bmp.begin(0x76); // Inicializa objeto BMP
+  dht.begin(); // Inicializa objeto dht
+  lcd.init(); // Inicializa LCD
+  lcd.backlight(); // Liga luz do LCD
+  lcd.createChar(0,tio);
+  lcd.createChar(2,grau);
+
 }
 void loop()
 {
@@ -51,7 +75,11 @@ lcd.print(umid);
 delay(2000);
 lcd.clear();
 lcd.setCursor(0,0);
-lcd.print("Temp. - [oC]:");
+lcd.print("Temp. - [");
+lcd.setCursor(9,0);
+lcd.write(2);
+lcd.setCursor(10,0);
+lcd.print("C]: ");
 lcd.setCursor(0,1);
 lcd.print(temp);
 delay(2000);
@@ -63,7 +91,11 @@ lcd.print(lum);
 delay(2000);
 lcd.clear();
 lcd.setCursor(0,0);
-lcd.print("Presure [hPa]:");
+lcd.print("Press"); 
+lcd.setCursor(5,0);
+lcd.write(0);
+lcd.setCursor(6,0);
+lcd.print("o [hPa]:");
 lcd.setCursor(0,1);
 lcd.print(press/100);
 delay(2000);
