@@ -10,7 +10,7 @@ void loop()
 {
 umid = dht.readHumidity(); // Lê umidade
 temp = dht.readTemperature(); // Lê temperatura
-umid = 1.21*umid + 4.90; // Calibração
+umid = 0.927*umid + 3.026; // Calibração
 Serial.print("\n\nUmidade [%]: ");
 Serial.print(umid); // Exibe umidade
 Serial.print("\nTemperatura [ºC]: ");

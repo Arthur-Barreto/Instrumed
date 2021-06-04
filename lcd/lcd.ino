@@ -7,10 +7,9 @@ void setup()
 {
 lcd.init(); // Inicializa LCD
 lcd.backlight(); // Liga luz do LCD
-lcd.print("HELLO WORLD!");// Escreve no LCD
+lcd.print("Muito obrigado");// Escreve no LCD
 }
 void loop()
 {
-lcd.setCursor(0,1); // Move cursor no LCD
-lcd.print(millis()/1000);// Escreve no LCD
+
 } 
