@@ -8,7 +8,7 @@ Adafruit_BMP280 bmp; // Declara objeto do tipo BMP
 // biblioteca do sensor de umidade
 #include <DHT.h>
 DHT dht(2,DHT22); // Declara objeto do tipo DHT
-  float umid,tempdh; // Declara variáveis
+  float umid; // Declara variáveis
   int bin; float tensao, temp; // Declara variáveis
   int b;float t,res,lum; // variáveis do ldr
   float press; // variável da pressão d sensor bmp 280
@@ -127,7 +127,6 @@ void loop()
   temp = 99.602*tensao-0.0677; // Converte em temp.e calibra
   /////////Para o dht22///////////////
   umid = dht.readHumidity(); // Lê umidade
-  tempdh = dht.readTemperature();
   umid = 0.927*umid + 3.026; // Calibração de acordo com o excel
   // para o bmp 280
   press = bmp.readPressure(); // Lê pressão
